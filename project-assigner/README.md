@@ -23,8 +23,43 @@ Here's a sample format of the `issue-mappings` input:
             {"label": "bug", "projectName": "test2", "columnId": 5678}]'
 
 ## Example usage
-	uses: alexh97/github-actions/project-assigner@v1
-	with:
-	  issue-mappings: '[{"label": "Test", "projectName": "test", "columnId": 1234},
-	    {"label": "bug", "projectName": "test2", "columnId": 5678}]'
 
+In order to use this action, create a workflow configuration file (e.g. `issues-workflow.yml`) in your repository's `.github/workflows` directory. *Note that you need to have GitHub Actions enabled for your repository in order for this to work!*
+
+### A workflow configuration for assigning issues to projects
+
+	on:
+  	  issues:
+    	  types: [labeled, unlabeled]
+
+	jobs:
+	  assign_to_project:
+	    runs-on: ubuntu-latest
+	    name: Assign an issue to project based on label
+	    steps:
+	      - name: Assign to project
+		uses: alexh97/github-actions/project-assigner@v1.0.0
+		id: project_assigner
+		with:
+		  issue-mappings: '[{"label": "Test", "projectName": "test", "columnId": 1234},
+		    {"label": "bug", "projectName": "test2", "columnId": 5678}]'
+		  ghToken: ${{ secrets.GITHUB_TOKEN }}
+
+### A workflow configuration for assigning pull requests to projects
+
+	on:
+	  pull_request:
+	    types: [labeled, unlabeled]
+
+	jobs:
+	  assign_to_project:
+	    runs-on: ubuntu-latest
+	    name: Assign a PR to project based on label
+	    steps:
+	      - name: Assign to project
+		uses: alexh97/github-actions/project-assigner@v1.0.0
+		id: project_assigner
+		with:
+		  issue-mappings: '[{"label": "Test", "projectName": "test", "columnId": 1234},
+		    {"label": "enhancement", "projectName": "test2", "columnId": 5678}]'
+		  ghToken: ${{ secrets.GITHUB_TOKEN }}
