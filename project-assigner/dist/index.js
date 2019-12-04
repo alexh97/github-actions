@@ -2639,16 +2639,16 @@ async function handleLabeled(octokit, projectColumnId, labelToMatch) {
             column_id: projectColumnId,
             content_id: contentId,
             content_type: contentType
+        }).then(function (response) {
+            console.log(`${contentType} ${contentId} added to project`);
+        }).catch(function(error) {
+            core.setFailed(`Error adding ${contentType} to project: ${error.message}`);
         });
-    } else {
-        console.log(`Label was applied, but we don't care`);
     }
 }
 
 async function handleUnlabeled(octokit, projectName, labelToMatch) {
     if (github.context.payload.label.name == labelToMatch) {
-        console.log('Found matching label on UNLABLED event');
-        
         const owner = github.context.payload.repository.owner.login;
         const repo = github.context.payload.repository.name;
         var query, projectCardsPath;
