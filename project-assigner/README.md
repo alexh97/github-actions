@@ -18,6 +18,7 @@ A JSON array of objects containing `label`, `projectName`, and `columnId` attrib
 **`columnId`** - *ID* of the GitHub project column that an issue or a pull request should be placed in when they're assigned to the project.  For issues, this would typically be the ID of the "To Do" column. For pull requests, this may be the ID of the "In Review" column. You should use your own discression when choosing which columns to use for your particular project.  A column ID can be found by copying the column URL using its "..." menu and then using the numeric ID at the end of the URL as the value for `columnId`.
 
 Here's a sample format of the `issue-mappings` input:
+
 	issue-mappings: '[{"label": "Test", "projectName": "test", "columnId": 1234},
             {"label": "bug", "projectName": "test2", "columnId": 5678}]'
 
