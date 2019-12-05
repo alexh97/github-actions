@@ -4,14 +4,14 @@ This is a GitHub action, implemented in JavaScript, which does the following:
   - Assigns an issue or pull request to a project when a specified label is applied
   - Removes an issue or pull request from a project when a specified label is removed
 
-You can provide multiple lable to project mappings as the action input.
+You can provide multiple label to project mappings as the action input.
 
 ## Inputs
 
 ### `issue-mappings`
 A JSON array of objects containing `label`, `projectName`, and `columnId` attributes.
 
-**`label`** - name of the GitHub lable that should trigger this action when it's applied to or removed from an issue or a pull request.
+**`label`** - name of the GitHub label that should trigger this action when it's applied to or removed from an issue or a pull request.
 
 **`projectName`** - name of the project that an issue or pull request should be assinged to when the label is applied, or removed from when the label is removed.
 
