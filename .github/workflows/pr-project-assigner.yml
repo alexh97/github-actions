@@ -13,10 +13,10 @@ jobs:
         with:
           issue-mappings: |
             [
-               {"label": "foo", "projectName": "bar", "columnId": 1234}
-#              {"label": "Test", "projectName": "Test", "columnId": 8230518}, 
-#              {"label": "bug", "projectName": "Test", "columnId": 8230520}, 
-#              {"label": "invalid", "projectName": "Test", "columnId": 8230521}
             ]
             
           ghToken: ${{ secrets.PROJECT_ASSIGNER_TOKEN }}
+
+#              {"label": "Test", "projectName": "Test", "columnId": 8230518},
+#              {"label": "bug", "projectName": "Test", "columnId": 8230520},
+#              {"label": "invalid", "projectName": "Test", "columnId": 8230521}
