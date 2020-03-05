@@ -1,0 +1,17 @@
+on:
+  issues:
+    types: [labeled, unlabeled]
+
+jobs:
+  assign_to_project:
+    runs-on: ubuntu-latest
+    name: Assign issue or PR to project based on label
+    steps:
+      - name: Assign to project
+        uses: elastic/github-actions/project-assigner@v1.0.3
+        id: project_assigner
+        with:
+          issue-mappings: '[{"label": "Test", "projectName": "Test", "columnId": 8230518}, {"label": "bug", "projectName": "Test", "columnId": 8230520}, {"label": "invalid", "projectName": "Test", "columnId": 8230521}]'
+          ghToken: ${{ secrets.GITHUB_TOKEN }}
+
+
