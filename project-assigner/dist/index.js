@@ -2627,6 +2627,7 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
             }
             
             if (targetColumnId) {
+                console.log(`Target column ID is ${targetColumnId}`);
                 const mutation = `
                     mutation {
                         addProjectCard(input: { projectColumnId: "${targetColumnId}", contentId: "${contentId}" }) {
@@ -2637,7 +2638,8 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
                             }
                         }
                     }`;
-
+                
+                console.log(`Mutation: ${mutation}`);
                 await octokit(mutation);
             }
         } catch (error) {
