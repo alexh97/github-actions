@@ -2627,18 +2627,16 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
             }
             
             if (targetColumnId) {
-                var mutation = `mutation {
-                    addProjectCard(input: {
-                        projectColumnId: ${targetColumnId},
-                        contentId: ${contentId}
-                    }) {
-                        cardEdge {
-                        node {
-                            id
+                const mutation = `
+                    mutation {
+                        addProjectCard(input: { projectColumnId: "${targetColumnId}", contentId: "${contentId}" }) {
+                            cardEdge {
+                                node {
+                                    id
+                                }
+                            }
                         }
-                        }
-                    }
-                }`;
+                    }`;
 
                 await octokit(mutation);
             }
