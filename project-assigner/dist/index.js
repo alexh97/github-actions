@@ -2599,17 +2599,18 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
             core.setFailed(`Unrecognized event: ${github.context.eventName}`);
         }
 
-        console.log(`Creating a new card for ${state} ${contentType} [${contentId}] in project [${projectNumber}] column [${columnName}] matching label [${labelToMatch}], labeled by ${github.context.payload.sender.login}`);
+        console.log(`Creating a new card for ${state} ${contentType} [${contentId}] in project [${projectNumber}] column [${columnName}] matching label [${labelToMatch}], labeled by ${owner} of repo ${repo}`);
+
         try {
             const query = `{
                 repository(name: ${repo}, owner: ${owner}) {
                     project(number: ${projectNumber}) {
-                    columns(first: 50) {
-                        nodes {
-                        name,
-                        id
+                        columns(first: 50) {
+                            nodes {
+                                name,
+                                id
+                            }
                         }
-                    }
                     }
                 }
             }`;
