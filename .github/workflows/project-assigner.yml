@@ -11,7 +11,7 @@ jobs:
         uses: alexh97/github-actions/project-assigner@880e8c861bf1fbdc97a405f1765d7759d89008f4
         id: project_assigner
         with:
-          issue-mappings: '[{"label": "Test", "projectNumber": 1, "columnName": "To do"}, {"label": "bug", "projectNumber": 1, "columnId": "In progress"}, {"label": "invalid", "projectNumber": 1, "columnName": "Done"}]'
+          issue-mappings: '[{"label": "Test", "projectNumber": 1, "columnName": "To do"}, {"label": "bug", "projectNumber": 1, "columnName": "In progress"}, {"label": "invalid", "projectNumber": 1, "columnName": "Done"}]'
           ghToken: ${{ secrets.GITHUB_TOKEN }}
 
 
