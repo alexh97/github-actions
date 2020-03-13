@@ -23,16 +23,6 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
         }
 
         console.log(`Creating a new card for ${state} ${contentType} [${contentId}] in project [${projectNumber}] column [${columnName}] matching label [${labelToMatch}], labeled by ${github.context.payload.sender.login}`);
-        // try {
-        //     const response = await octokit.projects.createCard({
-        //         column_id: projectColumnId,
-        //         content_id: contentId,
-        //         content_type: contentType
-        //     });
-        //     console.log(`${contentType} #${contentId} added to project ${projectName} column ${projectColumnId}`);
-        // } catch (error) {
-        //     core.setFailed(`Error adding ${contentType} #${contentId} to project ${projectName} column ${projectColumnId}: ${error.message}`);
-        // };
         try {
             const query = `{
                 repository(name: ${repo}, owner: ${owner}) {
@@ -60,10 +50,10 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
             }
             
             if (targetColumnId) {
-                var mutation = `mutation($targetColumnId: ID!, $contentId: ID!) {
+                var mutation = `mutation {
                     addProjectCard(input: {
-                        projectColumnId: $targetColumnId,
-                        contentId: $contentId
+                        projectColumnId: ${targetColumnId},
+                        contentId: ${contentId}
                     }) {
                         cardEdge {
                         node {
@@ -73,7 +63,7 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
                     }
                 }`;
 
-                await octokit(mutation, {targetColumnId, contentId});
+                await octokit(mutation);
             }
         } catch (error) {
             core.setFailed(`Error adding ${contentType} to project ${projectNumber} column ${columnName}: ${error.message}`);
