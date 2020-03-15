@@ -8,7 +8,7 @@ jobs:
     name: Assign a PR to project based on label
     steps:
       - name: Assign to project
-        uses: alexh97/github-actions/project-assigner@3f67f4b48426dd512b3c99a302a3d7083b9e2af9
+        uses: alexh97/github-actions/project-assigner@e2add76d4cf57702060b2ad852a5add061c8b09c
         id: project_assigner
         with:
           issue-mappings: '[{"label": "Test", "projectNumber": 1, "columnName": "To do"}, {"label": "bug", "projectNumber": 1, "columnName": "In progress"}, {"label": "invalid", "projectNumber": 1, "columnName": "Done"}]'
