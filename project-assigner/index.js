@@ -139,12 +139,13 @@ async function handleUnlabeled(octokit, projectNumber, labelToMatch) {
                 const cardId = _.get(cardToRemove, 'node.id');
 
                 try {
-                    const mutation = `mutation($cardId: ID!) {
-                        deleteProjectCard(input: {cardId: $cardId}) {
+                    const mutation = `mutation {
+                        deleteProjectCard(input: {cardId: ${cardId}) {
                             deletedCardId
                         }
                     }`;
-                    await octokit(mutation, cardId);
+                    console.log(`Card removal mutation:\n${mutation}`);
+                    await octokit(mutation);
                     console.log(`${contentType} removed from project ${projectNumber}`);
                 } catch (error) {
                     core.setFailed(`Error removing ${contentType} from project: ${error.message}`);
