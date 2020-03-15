@@ -26,7 +26,7 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
 
         try {
             const query = `{
-                repository(name: ${repo}, owner: ${owner}) {
+                repository(name: "${repo}", owner: "${owner}") {
                     project(number: ${projectNumber}) {
                         columns(first: 50) {
                             nodes {
@@ -38,6 +38,7 @@ async function handleLabeled(octokit, projectNumber, columnName, labelToMatch) {
                 }
             }`;
 
+            console.log(`Query for project columns:\n ${query}`)
             const response = await octokit(query);
             const columns = _.get(response, 'repository.project.columns.nodes');
             var targetColumnId;
