@@ -2717,7 +2717,7 @@ async function handleUnlabeled(octokit, projectNumber, labelToMatch) {
 
                 try {
                     const mutation = `mutation {
-                        deleteProjectCard(input: {cardId: "${cardId}") {
+                        deleteProjectCard(input: {cardId: "${cardId}"}) {
                             deletedCardId
                         }
                     }`;
